@@ -11,7 +11,7 @@ This is a simple web application that translates text between languages using **
 
 ## 🔗 Click the link for Demo
 
-➡️ [View Live](translator-by-pranab.netlify.app)
+➡️ <a href="https://translator-by-pranab.netlify.app" target="_blank">View Live</a>
 
 ---
 
