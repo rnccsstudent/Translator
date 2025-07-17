@@ -1,6 +1,6 @@
 Flask==2.3.2
 flask-cors==3.0.10
-googletrans==4.0.0-rc1
+deep-translator==1.11.4
 gunicorn
 
 
