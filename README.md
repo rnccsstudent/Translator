@@ -11,7 +11,7 @@ This is a simple web application that translates text between languages using **
 
 ## 🔗 Click the link for Demo
 
-➡️ ![View Live](translator-by-pranab.netlify.app)
+➡️ [View Live](translator-by-pranab.netlify.app)
 
 ---
 
@@ -45,13 +45,14 @@ This is a simple web application that translates text between languages using **
 
 ## 📁  Project Structure
 
-Translator/
-├── backend/
-│ ├── app.py
-│ ├── requirements.txt
-│ └── translation_history.txt
-├── frontend/
-│ └── (React files: App.js, App.css, etc.)
+    Translator/
+    ├── backend/
+    │ ├── app.py
+    │ ├── requirements.txt
+    │ └── translation_history.txt
+    ├── frontend/
+    │ └── (React files: App.js, App.css, etc.)
+    ├── README.md
 
 ---
 
