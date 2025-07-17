@@ -1,41 +1,36 @@
 from flask import Flask, request, jsonify, send_file
+from deep_translator import GoogleTranslator
 from flask_cors import CORS
 import os
 
-try:
-    from googletrans import Translator
-except ImportError:
-    raise ImportError("Please install googletrans==4.0.0-rc1")
-
 app = Flask(__name__)
-CORS(app)
+CORS(app)  # Allow access from React app
 
-translator = Translator()
 translation_count = 0
 
 @app.route('/translate', methods=['POST'])
 def translate_text():
     global translation_count
+    data = request.get_json()
+    text = data['text']
+    source_lang = data['source']
+    target_lang = data['target']
+
+    translation_count += 1
+
     try:
-        data = request.get_json()
-        text = data.get('text', '')
-        source_lang = data.get('source', 'auto')
-        target_lang = data.get('target', 'en')
-
-        result = translator.translate(text, src=source_lang, dest=target_lang)
-        translated_text = result.text
-
-        translation_count += 1
-
-        with open("translation_history.txt", "a", encoding="utf-8") as f:
-            f.write(f"{source_lang.upper()} → {target_lang.upper()}\n")
-            f.write(f"Input   : {text}\n")
-            f.write(f"Output  : {translated_text}\n")
-            f.write("-" * 40 + "\n")
-
-        return jsonify({'translated_text': translated_text})
+        translated_text = GoogleTranslator(source=source_lang, target=target_lang).translate(text)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+    # Save to history
+    with open("translation_history.txt", "a", encoding="utf-8") as f:
+        f.write(f"{source_lang.upper()} → {target_lang.upper()}\n")
+        f.write(f"Input   : {text}\n")
+        f.write(f"Output  : {translated_text}\n")
+        f.write("-" * 40 + "\n")
+
+    return jsonify({'translated_text': translated_text})
 
 @app.route('/stats', methods=['GET'])
 def stats():
