@@ -1,0 +1,20 @@
+# === Frontend (React) ===
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.DS_Store
+
+# === Backend (Python/Flask) ===
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+backend/instance/
+backend/.env
+backend/.DS_Store
+
+# === Logs ===
+*.log
+
+# === System Files ===
+.DS_Store
+Thumbs.db
