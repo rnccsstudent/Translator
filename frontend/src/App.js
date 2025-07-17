@@ -25,7 +25,7 @@ function App() {
     }
 
     // fetch stats
-    fetch('http://localhost:5000/stats')
+    fetch(`${process.env.REACT_APP_API_URL}/stats`)         //`${process.env.REACT_APP_API_URL}/stats` exchage if you do without deploy 'http://localhost:5000/stats'
       .then(res => res.json())
       .then(data => setStats(data.total_translations));
   }, []);
@@ -96,7 +96,7 @@ function App() {
 
 
   const downloadHistory = () => {
-    window.open('http://localhost:5000/download', '_blank');
+    window.open(`${process.env.REACT_APP_API_URL}/download`, '_blank');  //`${process.env.REACT_APP_API_URL}/download` exchange with 'http://localhost:5000/download' without deploy
   };
   
   const handleTranslate = async () => {
@@ -109,7 +109,7 @@ function App() {
     setLoading(true);
   
     try {
-      const response = await fetch('http://localhost:5000/translate', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/translate`, {     //if you run without deploy url is  'http://localhost:5000/translate' exchange of process.env.REACT_APP_API_URL
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text, source, target }),
@@ -139,7 +139,7 @@ function App() {
     if (!confirm) return;
 
     try {
-      await fetch('http://localhost:5000/clear-history', { method: 'POST' });
+      await fetch(`${process.env.REACT_APP_API_URL}/clear-history`, { method: 'POST' });   //`${process.env.REACT_APP_API_URL}/clear-history` exchange if you do without deploy 'http://localhost:5000/clear-history'
       setHistory([]);
       toast.success("History cleared.");
     } catch (error) {
